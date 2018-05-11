@@ -377,7 +377,7 @@ extension MMSegmentedControl: UIGestureRecognizerDelegate {
         return false
     }
 
-    func MMSegmentedControlLongPressed(_ gesture: UIGestureRecognizer) {
+    @objc func MMSegmentedControlLongPressed(_ gesture: UIGestureRecognizer) {
         switch gesture.state {
         case .possible:
             print("LongPressGesture Possible!")
