@@ -48,6 +48,10 @@ open class MMSegmentedControl: UIControl {
     open var selectionIndicatorStyle: MMSegmentedControlSelectionIndicatorStyle = .none
     open var selectionIndicatorColor = UIColor.black
     open var selectionIndicatorHeight = SelectionIndicator.defaultHeight
+    
+    open var titleBorderStyle: MMSegmentedControlTitleBorderStyle = .none
+    open var titleBorderColor: UIColor = .clear
+    open var titleBorderWidth: CGFloat = .zero
     /// Only available in fixed layout policy
     open var selectionIndicatorEdgeInsets = UIEdgeInsets.zero
     open var titleAttachedIconPositionOffset: (x: CGFloat, y: CGFloat) = (0, 0)
@@ -515,6 +519,20 @@ public extension MMSegmentedControl {
             }
 
             scrollView.layer.addSublayer(titleLayer)
+            
+            guard titleBorderStyle != .none else { continue }
+            guard selectedIndex != index else { continue }
+            let borderLayer: CALayer = {
+                let borderLayer = CALayer()
+                borderLayer.frame = frameForBorder(at: index)
+                borderLayer.borderColor = titleBorderColor.cgColor
+                borderLayer.borderWidth = titleBorderWidth
+                borderLayer.backgroundColor = UIColor.clear.cgColor
+                borderLayer.cornerRadius = self.titleBorderStyle == .rounded ?
+                    (borderLayer.frame.size.height / 2) : 0.0
+                return borderLayer
+            }()
+            scrollView.layer.insertSublayer(borderLayer, at: 0)
         }
     }
 
@@ -648,6 +666,41 @@ public extension MMSegmentedControl {
                 return CGRect(x: xPosition,
                               y: (frame.height - selectionBoxHeight) / 2,
                               width: singleSegmentWidth(at: selectedIndex),
+                              height: selectionBoxHeight)
+            }
+        }()
+
+        return boxRect
+    }
+    
+    
+    fileprivate func frameForBorder(at index: Int) -> CGRect {
+        if selectionBoxStyle == .none {
+            return CGRect.zero
+        }
+
+        let xPosition: CGFloat = {
+            switch layoutPolicy {
+            case .fixed:
+                return singleSegmentWidth() * CGFloat(index)
+            case .dynamic:
+                let frontWidths = totalSegmentsWidths(before: index)
+                return contentInset.left + frontWidths.reduce(0, +) + segmentSpacing * CGFloat(frontWidths.count)
+            }
+        }()
+
+        let boxRect: CGRect = {
+            switch layoutPolicy  {
+            case .fixed:
+                let fullRect = CGRect(x: xPosition, y: 0, width: singleSegmentWidth(), height: frame.height)
+                return CGRect(x: fullRect.origin.x + selectionBoxEdgeInsets.left,
+                              y: fullRect.origin.y + selectionBoxEdgeInsets.top,
+                              width: fullRect.width - (selectionBoxEdgeInsets.left + selectionBoxEdgeInsets.right),
+                              height: fullRect.height - (selectionBoxEdgeInsets.top + selectionBoxEdgeInsets.bottom))
+            case .dynamic:
+                return CGRect(x: xPosition,
+                              y: (frame.height - selectionBoxHeight) / 2,
+                              width: singleSegmentWidth(at: index),
                               height: selectionBoxHeight)
             }
         }()

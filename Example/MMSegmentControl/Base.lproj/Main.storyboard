@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,15 +19,49 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ET1-rS-eqN" customClass="MMSegmentedControl" customModule="MMSegmentControl">
-                                <rect key="frame" x="0.0" y="50" width="375" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ET1-rS-eqN" customClass="MMSegmentedControl" customModule="MMSegmentControl">
+                                <rect key="frame" x="0.0" y="53" width="375" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="RXN-dr-owj"/>
+                                </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4II-be-Wra" customClass="MMSegmentedControl" customModule="MMSegmentControl">
+                                <rect key="frame" x="0.0" y="146" width="375" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="dTP-kA-R8v"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Standard Example" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HBM-LQ-ckS">
+                                <rect key="frame" x="0.0" y="24" width="139" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bordered" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Byt-el-Z6c">
+                                <rect key="frame" x="0.0" y="117" width="71" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="HBM-LQ-ckS" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="24" id="EBs-Fi-FjN"/>
+                            <constraint firstAttribute="trailing" secondItem="4II-be-Wra" secondAttribute="trailing" id="FHG-W9-DNA"/>
+                            <constraint firstItem="ET1-rS-eqN" firstAttribute="top" secondItem="HBM-LQ-ckS" secondAttribute="bottom" constant="8" id="JCk-LS-35Z"/>
+                            <constraint firstItem="Byt-el-Z6c" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="S7i-C2-rfL"/>
+                            <constraint firstItem="ET1-rS-eqN" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="VE0-rs-574"/>
+                            <constraint firstItem="Byt-el-Z6c" firstAttribute="top" secondItem="ET1-rS-eqN" secondAttribute="bottom" constant="24" id="XdJ-lo-990"/>
+                            <constraint firstItem="4II-be-Wra" firstAttribute="top" secondItem="Byt-el-Z6c" secondAttribute="bottom" constant="8" id="YUv-9z-kTD"/>
+                            <constraint firstItem="4II-be-Wra" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="ryR-AR-a6U"/>
+                            <constraint firstAttribute="trailing" secondItem="ET1-rS-eqN" secondAttribute="trailing" id="tCm-Gf-QS9"/>
+                            <constraint firstItem="HBM-LQ-ckS" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="w5k-uD-5Fo"/>
+                        </constraints>
                     </view>
                     <connections>
+                        <outlet property="borderedSegmentControl" destination="4II-be-Wra" id="7gz-Eg-3IO"/>
                         <outlet property="segmentControl" destination="ET1-rS-eqN" id="JLQ-KD-1kd"/>
                     </connections>
                 </viewController>

@@ -28,3 +28,9 @@ public enum MMSegmentedControlSelectionBoxStyle {
     case none
     case `default`
 }
+
+public enum MMSegmentedControlTitleBorderStyle {
+    case none
+    case solid
+    case rounded
+}
